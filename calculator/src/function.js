@@ -20,11 +20,9 @@ function inputCheck(number1){
 }
 
 function outputCheck(number1){
-    console.log("v" + number1);
     let result = [];
     if(number1 < 0)
     {
-        
         result.push("Can not display Negative numbers");
         console.log(result);
         return result.join(' , ');
