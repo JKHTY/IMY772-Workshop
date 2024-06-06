@@ -6,7 +6,7 @@ import { input_check, output_check, math_test, convert_to_d, convert_to_h } from
 const App = () => {
     const [input, setInput] = useState('');
     const [o1, setO1] = useState('');
-    const [o2, setO2] = useState('');
+    //const [o2, setO2] = useState('');
     const [operator, setOperator] = useState('');
     const [result, setResult] = useState('');
 
@@ -26,36 +26,46 @@ const App = () => {
           setInput('');
           setOperator(op);
         } else if (o1 && operator) {
-          setO2(input);
-          handleEqualClick();
+          const decO1 = convert_to_d(o1);
+          const decO2 = convert_to_d(input);
+
+          const decResult = math_test(decO1, decO2, operator);
+          const hexResult = convert_to_h(decResult);
+          const tempResult = output_check(hexResult).toUpperCase();
+
+          setO1(tempResult);
+          setInput('');
           setOperator(op);
+          setResult(tempResult);
         }
+      }
+      else if(result)
+      {
+        setO1(result);
+        setInput('');
+        setOperator(op);
       }
     };
 
     const handleClearClick = () => {
         setInput('');
         setO1('');
-        setO2('');
         setOperator('');
         setResult('');
     };
 
     const handleEqualClick = () => {
       if (o1 && operator && input) {
-        setO2(input);
         const decO1 = convert_to_d(o1);
         const decO2 = convert_to_d(input);
 
         const decResult = math_test(decO1, decO2, operator);
-
         const hexResult = convert_to_h(decResult);
         const finalResult = output_check(hexResult).toUpperCase();
 
         setResult(finalResult);
         setInput(finalResult);
         setO1('');
-        setO2('');
         setOperator('');
       }
     };
