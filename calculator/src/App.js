@@ -11,11 +11,13 @@ const App = () => {
     const [result, setResult] = useState('');
 
     const handleButtonClick = (value) => {
-      if (result) {
+      if (result && !operator) {
           setInput(value);
           setResult('');
       } else {
-          setInput(input + value);
+        if(input.length < 3){
+            setInput(input + value);
+        }
       }
     };
 
@@ -64,7 +66,7 @@ const App = () => {
         const finalResult = output_check(hexResult).toUpperCase();
 
         setResult(finalResult);
-        setInput(finalResult);
+        setInput(finalResult.slice(0, 3));
         setO1('');
         setOperator('');
       }
