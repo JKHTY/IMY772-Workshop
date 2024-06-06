@@ -1,24 +1,45 @@
 
-const { input_check, math_test, convert_to_d, convert_to_h }= require('./function.js');
+const { input_check, output_check, math_test, convert_to_d, convert_to_h }= require('./function.js');
 
 
 describe("inputCheck",()=>{
+    //maximum 3 input digit
     test("input 2133 should be 'incorrect'",()=>{
         expect(input_check('2133')).toBe('incorrect');
     });
-
+    //checking correct input digit
     test("input 11 should be 'correct'",()=>{
-        expect(input_check('11')).toBe('correct');
+        expect(input_check('A1')).toBe('correct');
     });
-
+    //can not input decimal value
     test("input 1.1 should be 'incorrect'",()=>{
         expect(input_check('1.1')).toBe('incorrect');
     });
 
     test("input 1.12 should be 'incorrect'",()=>{
-        expect(input_check('1.12')).toBe('incorrect');
+        expect(input_check('1.A2')).toBe('incorrect');
     });
 });
+
+describe("outputCheck",()=>{
+    //checking correct output digits//
+    test("output 21337 should be '21337'",()=>{
+        expect(output_check('21337')).toBe('21337');
+    });
+    //remove the extra digits//
+    test("output 2133675 should be '213387'",()=>{
+        expect(output_check('2133675')).toBe('213367');
+    });
+    //remove the digits after the decimal point//
+    test("output 2133.1 should be '213387'",()=>{
+        expect(output_check('2133.1')).toBe('2133');
+    });
+
+    test("output 2.143 should be '213387'",()=>{
+        expect(output_check('2.143')).toBe('2');
+    });
+});
+
 
 describe("MathTest", ()=>{
     test("multiplication of [2,3] should be '6'", ()=>{
