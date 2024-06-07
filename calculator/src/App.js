@@ -23,6 +23,7 @@ const App = () => {
 
     const handleOperatorClick = (op) => {
       if (input) {
+        input_check(input);
         if (!o1) {
           setO1(input);
           setInput('');
