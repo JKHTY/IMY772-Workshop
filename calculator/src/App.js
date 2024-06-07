@@ -66,7 +66,7 @@ const App = () => {
         const finalResult = output_check(hexResult).toUpperCase();
 
         setResult(finalResult);
-        setInput(finalResult.slice(0, 3));
+        setInput(finalResult.slice(0, 6));
         setO1('');
         setOperator('');
       }
